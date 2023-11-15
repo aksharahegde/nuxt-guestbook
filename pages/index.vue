@@ -36,29 +36,29 @@ async function saveComment() {
 </script>
 
 <template>
-  <UPageBody>
-    <UPageColumns>
-      <UPageCard v-if="!loggedIn" class="text-center">
+  <div class="flex justify-center w-full my-4">
+    <div :class="!loggedIn ? 'flex items-center justify-center' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'">
+      <UCard v-if="!loggedIn" class="text-center">
         <UButton icon="i-simple-icons-github" color="black" to="/auth/github" external>
           Login to comment
         </UButton>
-      </UPageCard>
-      <UPageCard v-else @dblclick="editing = true">
+      </UCard>
+      <UCard v-else @dblclick="editing = true">
         <UButton v-if="!editing" icon="i-heroicons-pencil" color="gray" variant="ghost" class="absolute top-2 right-2" @click="editing = true" />
-        <UTextarea v-if="editing" v-model="userCommentBody" :rows="1" autofocus autoresize @blur="saveComment" />
+        <UTextarea v-if="editing" v-model="userCommentBody" :rows="3" autofocus autoresize @blur="saveComment" />
         <q v-else>{{ userCommentBody }}</q>
         <div class="flex items-center gap-2 mt-4">
           <UAvatar :src="`https://github.com/${user.username}.png`" :alt="user.username" size="md" />
           <span class="font-semibold">{{ user.username }}</span>
         </div>
-      </UPageCard>
-      <UPageCard v-for="comment of otherComments" :key="comment.id" :to="`https://github.com/${comment.author}`" target="_blank">
+      </UCard>
+      <UCard v-for="comment of otherComments" :key="comment.id" :to="`https://github.com/${comment.author}`" target="_blank">
         <q>{{ comment.body }}</q>
         <div class="flex items-center gap-2 mt-4">
           <UAvatar :src="`https://github.com/${comment.author}.png`" :alt="comment.author" size="md" />
           <span class="font-semibold">{{ comment.author }}</span>
         </div>
-      </UPageCard>
-    </UPageColumns>
-  </UPageBody>
+      </UCard>
+    </div>
+  </div>
 </template>
