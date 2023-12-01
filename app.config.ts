@@ -3,7 +3,7 @@ export default defineAppConfig({
     color: 'emerald',
     gray: 'neutral',
     container: {
-      constrained: 'max-w-4xl'
+      constrained: 'max-w-7xl'
     }
   }
 })

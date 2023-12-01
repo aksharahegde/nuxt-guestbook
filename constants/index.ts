@@ -1,0 +1,7 @@
+const ROLE_ADMIN = "Admin";
+const ROLE_MODERATOR = "Moderator";
+const ROLE_DEFAULT = "Default";
+const ROLES = [ROLE_ADMIN, ROLE_MODERATOR, ROLE_DEFAULT];
+const ADMIN_ROLES = [ROLE_ADMIN, ROLE_MODERATOR];
+
+export { ROLE_DEFAULT, ROLES, ADMIN_ROLES };

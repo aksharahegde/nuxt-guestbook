@@ -45,15 +45,18 @@ async function saveComment() {
       </UPageCard>
       <UPageCard v-else @dblclick="editing = true">
         <UButton v-if="!editing" icon="i-heroicons-pencil" color="gray" variant="ghost" class="absolute top-2 right-2" @click="editing = true" />
-        <UTextarea v-if="editing" v-model="userCommentBody" :rows="1" autofocus autoresize @blur="saveComment" />
-        <q v-else>{{ userCommentBody }}</q>
+        <UTextarea v-if="editing" v-model="userCommentBody" :rows="3" autofocus autoresize />
+        <q v-else class="text-gray-500 dark:text-gray-400">{{ userCommentBody }}</q>
         <div class="flex items-center gap-2 mt-4">
           <UAvatar :src="`https://github.com/${user.username}.png`" :alt="user.username" size="md" />
-          <span class="font-semibold">{{ user.username }}</span>
+          <div class="flex items-center justify-between w-full">
+            <span class="font-semibold">{{ user.username }}</span>
+            <UButton v-if="editing" icon="i-heroicons-document-text" color="green" variant="soft" @click="saveComment" />
+          </div>
         </div>
       </UPageCard>
       <UPageCard v-for="comment of otherComments" :key="comment.id" :to="`https://github.com/${comment.author}`" target="_blank">
-        <q>{{ comment.body }}</q>
+        <q class="text-gray-500 dark:text-gray-400">{{ comment.body }}</q>
         <div class="flex items-center gap-2 mt-4">
           <UAvatar :src="`https://github.com/${comment.author}.png`" :alt="comment.author" size="md" />
           <span class="font-semibold">{{ comment.author }}</span>
