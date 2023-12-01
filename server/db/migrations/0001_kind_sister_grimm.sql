@@ -1,0 +1,1 @@
+ALTER TABLE comments ADD `status` text DEFAULT 'submitted' NOT NULL;
